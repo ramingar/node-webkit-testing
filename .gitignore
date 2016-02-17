@@ -1,3 +1,7 @@
 nwjs-*
 app.zip
+
 node_modules/
+bower_components/
+
+.idea/
