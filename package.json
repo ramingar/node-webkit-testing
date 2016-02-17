@@ -1,0 +1,14 @@
+{
+  "name": "nwjs-first-project",
+  "description": "Project for testing purposes...",
+  "version": "0.0.1",
+  "main": "index.html",
+  "window": {
+    "toolbar": false,
+    "width": 1024,
+    "height": 768
+  },
+  "dependencies": {
+    "angular": "^1.5.0"
+  }
+}
