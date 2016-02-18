@@ -7,7 +7,10 @@ module.exports = function (grunt) {
 
     exec: {
       bower_install: 'bower install',
-      http_server_run: 'http-server . -p 3000'
+      http_server_run: 'http-server . -p 3000',
+      clean_exec: 'rm app.zip',
+      compile_project: 'zip app.zip -r "assets/" "vendor/" "package.json" "index.html"',
+      run_project: 'nwjs-v0.12.3-linux-x64/nw app.zip'
     },
     
     copy: {
@@ -78,8 +81,18 @@ module.exports = function (grunt) {
   );
 
   grunt.registerTask(
-      'debug',
-      ['exec:http_server_run']
+    'debug',
+    ['exec:http_server_run']
+  );
+
+  grunt.registerTask(
+    'compile',
+    ['exec:clean_exec', 'exec:compile_project']
+  );
+
+  grunt.registerTask(
+    'run',
+    ['exec:clean_exec', 'exec:compile_project', 'exec:run_project']
   );
 
 };
