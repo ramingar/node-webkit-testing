@@ -55,6 +55,16 @@ module.exports = function (grunt) {
             ],
             dest: 'vendor/angular/'
           },
+
+          {
+            expand: true,
+            cwd: 'bower_components/angular-animate',
+            src: [
+              'angular-animate.min.js',
+              'angular-animate.min.js.map'
+            ],
+            dest: 'vendor/angular/'
+          },
           {
             expand: true,
             cwd: 'bower_components/angular-sanitize',
