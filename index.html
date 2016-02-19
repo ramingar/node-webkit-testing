@@ -8,7 +8,16 @@
 
     <h1>Testing!!</h1>
 
-    <div data-ng-repeat="ii in [1,2,3]" data-ng-bind="'Hello ' + ii"></div>
+    <div data-ng-controller="ListCtrl">
+        <div data-ng-controller="FormCtrl">
+            <div data-ng-controller="TestCtrl" data-ng-init="getGists()">
+                <div data-ng-repeat="gist in results" data-ng-bind="gist.url"></div><br>
+            </div>
+        </div>
+    </div>
+
+    <!-- ---- CONFIG FILES ---- -->
+    <script src="assets/js/config/dataConfig.js"></script>
 
     <!-- ---- ANGULAR DEPENDENCIES ---- -->
     <script src="vendor/angular/angular.min.js"></script>
@@ -23,6 +32,7 @@
 
     <!-- ---- CONTROLLERS ---- -->
     <script src="assets/js/controllers/RestControllers.js"></script>
+    <script src="assets/js/controllers/MainControllers.js"></script>
 
     <!-- ---- SERSVICES ---- -->
     <script src="assets/js/services/ServiceContainer.js"></script>
