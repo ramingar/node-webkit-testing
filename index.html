@@ -2,19 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+
     <title>Testing!!</title>
 </head>
 <body data-ng-app="WowGist">
 
-    <h1>Testing!!</h1>
-
     <div data-ng-controller="ListCtrl">
         <div data-ng-controller="FormCtrl">
-            <div data-ng-controller="TestCtrl" data-ng-init="getGists()">
-                <div data-ng-repeat="gist in results" data-ng-bind="gist.url"></div><br>
+            <div data-ng-controller="MainCtrl">
+                <div data-ng-view></div>
             </div>
         </div>
     </div>
+
 
     <!-- ---- CONFIG FILES ---- -->
     <script src="assets/js/config/dataConfig.js"></script>

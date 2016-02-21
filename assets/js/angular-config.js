@@ -2,26 +2,18 @@ angularApp.config([
   '$routeProvider',
   function ($routeProvider) {
 
-    /*
     $routeProvider
 
       .when(
-        '/main', {
-          templateUrl   : 'main.html',
-          reloadOnSearch: false,
-          resolve       : {
-            'mySession': [
-              'GetCurrentSession', function (GetCurrentSession) {
-                return GetCurrentSession.getSession();
-              }
-            ]
-          }
+        '/login', {
+          templateUrl   : 'templates/angular-views/login.html',
+          reloadOnSearch: false
         }
       )
       .otherwise({
-        redirectTo: '/profile'
+        redirectTo: '/login'
       });
-      */
+
   }
 ]);
 

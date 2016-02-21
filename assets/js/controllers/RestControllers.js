@@ -34,12 +34,12 @@ angularApp.controller('FormCtrl', ['$scope', 'ServiceContainer', '$location', '$
       return $scope.parameters;
     };
 
-    $scope.delete = function (idRow, options, parameters) {
+    $scope.delete = function (idRow, options, parameters, host) {
       $scope.parameters    = 'undefined' == typeof parameters ? $scope.parameters : parameters;
       $scope.model.id      = 'undefined' == typeof idRow      ? "" : idRow;
       $scope.parameters.id = $scope.model.id;
 
-      ServiceContainer.getResource($scope.parameters).remove(
+      ServiceContainer.getResource($scope.parameters, null, host).remove(
         $scope.model,
         function (data, responseHeaders) {
           if (typeof data.code == 'undefined') {
@@ -54,7 +54,7 @@ angularApp.controller('FormCtrl', ['$scope', 'ServiceContainer', '$location', '$
       );
     };
 
-    $scope.save = function (idRow, options, parameters, model, file) {
+    $scope.save = function (idRow, options, parameters, model, file, host) {
       $scope.parameters = 'undefined' == typeof parameters || null == parameters ? $scope.parameters : parameters;
       $scope.model      = 'undefined' == typeof model      || null == model      ? $scope.model      : model;
 
@@ -63,7 +63,7 @@ angularApp.controller('FormCtrl', ['$scope', 'ServiceContainer', '$location', '$
       if (typeof idRow != 'undefined' && idRow != null) {
         /* **** UPDATE **** */
         $scope.parameters.id = idRow;
-        ServiceContainer.getResource($scope.parameters, file).update(
+        ServiceContainer.getResource($scope.parameters, null, host).update(
           $scope.model,
           function (data, responseHeaders) {
             if ($scope.callbackManagement(data, responseHeaders, false, options)) {
@@ -80,7 +80,7 @@ angularApp.controller('FormCtrl', ['$scope', 'ServiceContainer', '$location', '$
       } else {
         /* **** SAVE **** */
         if ('undefined' == typeof file || null == file) {
-          ServiceContainer.getResource($scope.parameters).save(
+          ServiceContainer.getResource($scope.parameters, null, host).save(
             $scope.model,
             function (data, responseHeaders) {
               if ($scope.callbackManagement(data, responseHeaders, true, options)) {
@@ -96,7 +96,7 @@ angularApp.controller('FormCtrl', ['$scope', 'ServiceContainer', '$location', '$
           );
         } else {
           /* **** SAVE WITH FILES (multipart/for-data) **** */
-          ServiceContainer.getResourceForFiles($scope.parameters, file).save(
+          ServiceContainer.getResourceForFiles($scope.parameters, file, host).save(
             file,
             function (data, responseHeaders) {
               if ($scope.callbackManagement(data, responseHeaders, true, options)) {
@@ -251,11 +251,11 @@ angularApp.controller('ListCtrl', ['$scope', '$q', 'ServiceContainer',
       $scope.get($scope.parameters);
     };
 
-    $scope.get = function(parameters) {
+    $scope.get = function(parameters, mergeParams, host) {
       $scope.parameters = 'undefined' == typeof parameters ? $scope.parameters : parameters;
 
       var deferred = $q.defer();
-      var result = ServiceContainer.getResource($scope.parameters).get(
+      var result = ServiceContainer.getResource($scope.parameters, mergeParams, host).get(
         function (data, responseHeaders) {
           $scope.results = data;
           $scope.pagination.totalItems = 'undefined' == typeof $scope.results.page
