@@ -1,6 +1,7 @@
 nwjs-*
 app.zip
 **/dataConfig.js
+**/*.log
 
 node_modules/
 bower_components/
