@@ -1,6 +1,7 @@
 nwjs-*
 app.zip
 **/dataConfig.js
+**/serverConfig.json
 **/*.log
 
 node_modules/
