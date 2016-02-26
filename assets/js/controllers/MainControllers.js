@@ -2,9 +2,9 @@
  * Created by rafael on 19/02/16.
  */
 
-angularApp.controller('MainCtrl', ['$scope', '$location', 'TokenFactory', '$http',
-  function ($scope, $location, TokenFactory, $http) {
-    $scope.token = TokenFactory.token;
+angularApp.controller('MainCtrl', ['$scope', 'TokenFactory',
+  function ($scope, TokenFactory) {
+    $scope.tokenFactory = TokenFactory;
 
     $scope.getOAUTH2 = function () {
       var ref = window.open(

@@ -7,7 +7,15 @@ angularApp.config([
       .when(
         '/login', {
           templateUrl   : 'templates/angular-views/login.html',
-          reloadOnSearch: false
+          reloadOnSearch: false,
+          resolve : {
+            'mySession': ['TokenFactory', '$location', function (TokenFactory, $location) {
+              var urlSplitted = $location.absUrl().split('?access_token=');
+              if (1 < urlSplitted.length) {
+                TokenFactory.token = $location.absUrl().split('?access_token=')[1].split('&scope=')[0];
+              }
+            }]
+          }
         }
       )
       .otherwise({
