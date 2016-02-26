@@ -9,8 +9,8 @@ module.exports = function (grunt) {
       bower_install: 'bower install',
       http_server_run: 'http-server . -p 3000',
       clean_exec: 'rm app.zip',
-      compile_project: 'zip app.zip -r "assets/" "vendor/" "package.json" "index.html"',
-      run_project: 'nwjs-v0.12.3-linux-x64/nw app.zip'
+      compile_project: 'zip app.zip -r "assets/" "vendor/" "templates/" "package.json" "index.html" "server.js"',
+      run_project: 'nwjs-v0.12.3-linux-x64/nw app.zip --remote-debugging-port=9222'
     },
     
     copy: {
